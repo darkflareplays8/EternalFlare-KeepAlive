@@ -5,33 +5,32 @@ function connect() {
     host: 'DarkFlarePlays8.aternos.me',
     port: 37421,
     username: 'EternalFlare',
-    version: '1.21.8',
+    version: '1.21.8',  // Now using 1.21.8
     auth: 'offline'
   });
 
   client.on('login', () => {
-    console.log('✅ Bot joined!');
+    console.log('✅ Bot joined 1.21.8!');
     
-    // Anti-AFK every 2 minutes (beats Aternos timeout)
+    // SAFE 1.21.8 anti-AFK: Chat only every 2 minutes
     setInterval(() => {
-      client.write('position_look', {
-        x: 0, y: 100, z: 0, 
-        yaw: 0, pitch: 0, onGround: true
-      });
-      console.log('🕐 2-min anti-AFK');
-    }, 120000); // Exactly 2 minutes
+      try {
+        client.chat('§7[Bot] Staying online...');
+        console.log('🕐 2-min chat');
+      } catch(e) {
+        console.log('Chat failed');
+      }
+    }, 120000); // 2 minutes
     
-    // Extra chat safety every 4 min
+    // Arm swing (super safe for all versions)
     setInterval(() => {
-      client.chat('§7[Bot] Online');
-    }, 240000);
+      try {
+        client.write('arm_animation');
+      } catch(e) {}
+    }, 30000);
   });
 
-  client.on('end', () => {
-    console.log('Disconnected, retrying...');
-    setTimeout(connect, 10000);
-  });
-
+  client.on('end', () => setTimeout(connect, 10000));
   client.on('error', (err) => {
     console.log('❌', err.message);
     setTimeout(connect, 10000);
@@ -39,3 +38,4 @@ function connect() {
 }
 
 connect();
+
