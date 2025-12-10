@@ -5,7 +5,7 @@ function connect() {
     host: 'DarkFlarePlays8.aternos.me',
     port: 37421,
     username: 'EternalFlare',
-    version: '1.21.4',
+    version: '1.21.8',
     auth: 'offline'
   });
 
