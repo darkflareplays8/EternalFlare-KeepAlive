@@ -1,0 +1,7 @@
+{
+  "name": "EternalFlare-KeepAlive",
+  "version": "2.9.0",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "minecraft-protocol": "^1.50.0" }
+}
